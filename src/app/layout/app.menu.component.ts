@@ -20,9 +20,9 @@ export class AppMenuComponent implements OnInit {
                 items: [
 
                     {
-                        label: 'Client',
+                        label: 'Galery',
                         icon: 'pi pi-fw pi-building',
-                        routerLink: ['/crm/client']
+                        routerLink: ['/crm/galery']
                     },
                     {
                         label: 'Agent',

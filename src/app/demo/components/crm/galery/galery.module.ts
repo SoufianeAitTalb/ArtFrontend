@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CrudRoutingModule } from './crud-routing.module';
-import { CrudComponent } from './crud.component';
+import { galeryRoutingModule } from './galery-routing.module';
+import { galeryComponent } from './galery.component';
 import { TableModule } from 'primeng/table';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ButtonModule } from 'primeng/button';
@@ -23,12 +23,14 @@ import { ClientService } from 'src/app/demo/service/client.service';
 import { TabViewModule } from 'primeng/tabview';
 import { ContactClientComponent } from './ContactClient/contact-client/contact-client.component';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import {DataViewModule} from "primeng/dataview";
 
 
 @NgModule({
     imports: [
         CommonModule,
-        CrudRoutingModule,
+        DataViewModule,
+        galeryRoutingModule,
         TableModule,
         FileUploadModule,
         FormsModule,
@@ -49,7 +51,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
         TabViewModule,
         InputSwitchModule
     ],
-    declarations: [CrudComponent, ContactClientComponent],
+    declarations: [galeryComponent, ContactClientComponent],
     providers:[ClientService]
 })
-export class CrudModule { }
+export class galeryModule { }

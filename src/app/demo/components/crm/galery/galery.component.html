@@ -1,0 +1,166 @@
+
+
+<div class="grid">
+    <div class="col-6 lg:col-4 xl:col-2">
+        <div class="card mb-0">
+            <div class="flex justify-content-between mb-3">
+                <div>
+                    <div class="text-900 font-medium text-xl mt-2">{{Total_Clients}}</div>
+                    <span class="block text-500 font-medium mt-5">Totale des clients</span>
+                </div>
+                <div class="flex align-items-center justify-content-center bg-orange-100 border-round" [ngStyle]="{width: '2rem', height: '2.5rem'}">
+                    <i class="pi pi-chart-bar text-orange-500 text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 lg:col-4 xl:col-2">
+        <div class="card mb-0">
+            <div class="flex justify-content-between mb-3">
+                <div>
+                    <div class="text-900 font-medium text-xl mt-2">{{Total_Active_Clients}}</div>
+                    <span class="block text-500 font-medium mt-5">Clients actifs</span>
+                </div>
+                <div class="flex align-items-center justify-content-center bg-blue-100 border-round" [ngStyle]="{width: '2rem', height: '2.5rem'}">
+                    <i class="pi pi-check-circle text-blue-500 text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 lg:col-4 xl:col-2">
+        <div class="card mb-0">
+            <div class="flex justify-content-between mb-3">
+                <div>
+                    <div class="text-900 font-medium text-xl mt-2">{{Total_Inactive_Clients}}</div>
+                    <span class="block text-500 font-medium mt-5">Clients inactifs</span>
+                </div>
+                <div class="flex align-items-center justify-content-center bg-purple-100 border-round" [ngStyle]="{width: '2rem', height: '2.5rem'}">
+                    <i class="pi pi-circle text-purple-500 text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 lg:col-4 xl:col-2">
+        <div class="card mb-0">
+            <div class="flex justify-content-between mb-3">
+                <div>
+                    <div class="text-900 font-medium text-xl mt-2">{{Total_Active_Contacts}}</div>
+                    <span class="block text-500 font-medium mt-5">Contacts actifs</span>
+                </div>
+                <div class="flex align-items-center justify-content-center bg-blue-100 border-round" [ngStyle]="{width: '2rem', height: '2.5rem'}">
+                    <i class="pi pi-check-circle text-blue-500 text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 lg:col-4 xl:col-2">
+        <div class="card mb-0">
+            <div class="flex justify-content-between mb-3">
+                <div>
+                    <div class="text-900 font-medium text-xl mt-2">{{Total_Inactive_Contacts}}</div>
+                    <span class="block text-500 font-medium mt-5">Contacts inactifs</span>
+                </div>
+                <div class="flex align-items-center justify-content-center bg-purple-100 border-round" [ngStyle]="{width: '2rem', height: '2.5rem'}">
+                    <i class="pi pi-circle text-purple-500 text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 lg:col-4 xl:col-2">
+        <div class="card mb-0">
+            <div class="flex justify-content-between mb-3">
+                <div>
+                    <div class="text-900 font-medium text-xl mt-2">{{Total_Contacts}}</div>
+                    <span class="block text-500 font-medium mt-5">Totale des contacts</span>
+                </div>
+                <div class="flex align-items-center justify-content-center bg-green-100 border-round" [ngStyle]="{width: '2rem', height: '2.5rem'}">
+                    <i class="pi pi-chart-bar text-green-500 text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+
+                <h5>DataView</h5>
+                <p-dataView #dv [value]="products" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+                    <ng-template pTemplate="header">
+                        <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
+                            <p-dropdown [options]="sortOptions" placeholder="Sort By Price" (onChange)="onSortChange($event)"></p-dropdown>
+                            <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input type="search" pInputText placeholder="Search by Name" (input)="onFilter(dv, $event)">
+                        </span>
+                            <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                        </div>
+                    </ng-template>
+
+                    <ng-template let-product pTemplate="listItem">
+                        <div class="col-12">
+                            <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
+                                <img *ngIf="product.image" [src]="'http://localhost:8080/api/paints/imagePaint/'+product.paintId" [alt]="product.name" class="my-4 md:my-0 w-9 md:w-10rem shadow-2 mr-5"/>
+                                <div class="flex-1 flex flex-column align-items-center text-center md:text-left">
+                                    <div *ngIf="product.name" class="font-bold text-2xl">{{product.name}}</div>
+                                    <div *ngIf="product.descPaint" class="mb-2">{{product.descPaint}}</div>
+                                    <p-rating *ngIf="product.rating" [ngModel]="product.rating" [readonly]="true" [cancel]="false" styleClass="mb-2"></p-rating>
+                                    <div *ngIf="product.category" class="flex align-items-center mt-2">
+                                        <i class="pi pi-tag mr-2"></i>
+                                        <span class="font-semibold">{{product.category}}</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-row md:flex-column justify-content-between w-full md:w-auto align-items-center md:align-items-end mt-5 md:mt-0">
+                                    <span *ngIf="product.price" class="text-2xl font-semibold mb-2 align-self-center md:align-self-end">${{product.price}}</span>
+                                    <p-button *ngIf="product.inventoryStatus" icon="pi pi-shopping-cart" label="Add to Cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'" styleClass="mb-2 p-button-sm"></p-button>
+                                    <span *ngIf="product.inventoryStatus" [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+
+                    <ng-template let-product pTemplate="gridItem">
+                        <div class="col-12 md:col-4">
+                            <div class="card m-3 border-1 surface-border">
+                                <div class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
+                                    <div class="flex align-items-center">
+                                        <i class="pi pi-tag mr-2"></i>
+                                        <span *ngIf="product.category" class="font-semibold">{{product.category}}</span>
+                                    </div>
+                                    <span *ngIf="product.inventoryStatus" [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
+                                </div>
+                                <div class="flex flex-column align-items-center text-center mb-3">
+                                    <img *ngIf="product.image " [src]="'http://localhost:8080/api/paints/imagePaint/'+product.paintId" [alt]="product.name" [style]="{'width': '300px', 'height': '200px', 'object-fit': 'cover'}" class="w-9 shadow-2 my-3 mx-0"/>
+                                    <div class="text-2xl font-bold">{{product.name}}</div>
+                                    <div *ngIf="product.descPaint" class="mb-3">{{product.descPaint}}</div>
+                                    <p-rating *ngIf="product.rating" [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+                                </div>
+                                <div class="flex align-items-center justify-content-between">
+                                    <span *ngIf="product.price" class="text-2xl font-semibold">${{product.price}}</span>
+                                    <p-button *ngIf="product.inventoryStatus" icon="pi pi-shopping-cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-dataView>
+
+
+
+        </div>
+
+
+        <p-dialog [(visible)]="deletePaintDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span *ngIf="client">Êtes-vous sûr(e) de vouloir supprimer <b></b>?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-butFcheckton-text" label="Non" (click)="deletePaintDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui" (click)="confirmDelete()"></button>
+            </ng-template>
+        </p-dialog>
+
+
+    </div>
+</div>
