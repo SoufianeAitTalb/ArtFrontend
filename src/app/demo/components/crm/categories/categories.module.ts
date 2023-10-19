@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TaskRoutingModule } from './task-routing.module';
-import { TaskComponent } from './task.component';
+import { categoriesRoutingModule } from './categories-routing.module';
+import { categoriesComponent } from './categories.component';
 import { TableModule } from 'primeng/table';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ButtonModule } from 'primeng/button';
@@ -19,18 +19,19 @@ import { DialogModule } from 'primeng/dialog';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { HttpClientModule, provideHttpClient } from '@angular/common/http';
-import { AgentService } from 'src/app/demo/service/agent.service';
+import { ClientService } from 'src/app/demo/service/client.service';
 import { TabViewModule } from 'primeng/tabview';
 import { InputSwitchModule } from 'primeng/inputswitch';
-import {CheckboxModule} from "primeng/checkbox";
-import {StyleClassModule} from "primeng/styleclass";
-import { ToggleButtonModule } from 'primeng/togglebutton';
-import {CalendarModule} from "primeng/calendar";
+import {DataViewModule} from "primeng/dataview";
+import {ImageModule} from "primeng/image";
+import {CardModule} from "primeng/card";
+
 
 @NgModule({
     imports: [
         CommonModule,
-        TaskRoutingModule,
+        DataViewModule,
+        categoriesRoutingModule,
         TableModule,
         FileUploadModule,
         FormsModule,
@@ -50,12 +51,11 @@ import {CalendarModule} from "primeng/calendar";
         HttpClientModule,
         TabViewModule,
         InputSwitchModule,
-        CheckboxModule,
-        StyleClassModule,
-        ToggleButtonModule,
-        CalendarModule
+        ImageModule,
+        CardModule,
+        SelectButtonModule
     ],
-    declarations: [TaskComponent],
-    providers:[AgentService]
+    declarations: [categoriesComponent],
+    providers:[ClientService]
 })
-export class TaskModule { }
+export class categoriesModule { }

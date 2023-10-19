@@ -25,38 +25,18 @@ export class AppMenuComponent implements OnInit {
                         routerLink: ['/crm/galery']
                     },
                     {
-                        label: 'Agent',
+                        label: 'New ArtWorks',
+                        icon: 'pi pi-fw pi-pencil',
+                        routerLink: ['/crm/newArtWorks']
+                    },
+                    {
+                        label: 'Categories',
                         icon: 'pi pi-fw pi-user',
-                        routerLink: ['/crm/agent']
+                        routerLink: ['/crm/categories']
                     },
 
-                    {
-                        label: 'Tâche',
-                        icon: 'pi pi-fw pi-calendar',
-                        routerLink: ['/crm/task']
-                    },
-                    {
-                        label: 'Opportunité',
-                        icon: 'pi pi-fw pi-pencil',
-                        routerLink: ['/crm/opportunity']
-                    },
                 ]
-            },
-            {
-                label: 'Parametre',
-                items: [
-                    { label: 'Collaborateurs', icon: 'pi pi-fw pi-home', routerLink: ['/parametre/collaborateur'] },
-                    { label: 'Role', icon: 'pi pi-fw pi-home', routerLink: ['/parametre/role'] }
-                ]
-            },
-            {
-                label: 'Tarification',
-                items: [
-                    { label: 'Demandes ', icon: 'pi pi-fw pi-home', routerLink: ['/tarification/demande'] },
-                    { label: 'Tarifs', icon: 'pi pi-fw pi-home', routerLink: ['/tarification/tarif'] },
-                    { label: 'Offres', icon: 'pi pi-fw pi-home', routerLink: ['/tarification/offre'] }
-                ]
-            },
+            }
 
         ];
     }

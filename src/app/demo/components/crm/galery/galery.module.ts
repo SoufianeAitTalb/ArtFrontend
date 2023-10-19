@@ -21,9 +21,10 @@ import { AutoCompleteModule } from "primeng/autocomplete";
 import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { ClientService } from 'src/app/demo/service/client.service';
 import { TabViewModule } from 'primeng/tabview';
-import { ContactClientComponent } from './ContactClient/contact-client/contact-client.component';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import {DataViewModule} from "primeng/dataview";
+import {ImageModule} from "primeng/image";
+import {CardModule} from "primeng/card";
 
 
 @NgModule({
@@ -49,9 +50,11 @@ import {DataViewModule} from "primeng/dataview";
         AutoCompleteModule,
         HttpClientModule,
         TabViewModule,
-        InputSwitchModule
+        InputSwitchModule,
+        ImageModule,
+        CardModule
     ],
-    declarations: [galeryComponent, ContactClientComponent],
+    declarations: [galeryComponent],
     providers:[ClientService]
 })
 export class galeryModule { }

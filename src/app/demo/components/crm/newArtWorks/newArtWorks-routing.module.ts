@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { galeryComponent } from './galery.component';
+import { newArtWorksComponent } from './newArtWorks.component';
 
 
 @NgModule({
 	imports: [RouterModule.forChild([
-		{ path: '', component: galeryComponent }
+		{ path: '', component: newArtWorksComponent }
 
 	])],
 	exports: [RouterModule]
 })
-export class galeryRoutingModule { }
+export class newArtWorksRoutingModule { }

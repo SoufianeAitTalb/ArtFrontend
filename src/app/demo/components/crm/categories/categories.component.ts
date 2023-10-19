@@ -7,13 +7,14 @@ import {PaintService} from "../../../service/Paint.service";
 import {Paint} from "../../../api/Paint";
 import { DataView } from 'primeng/dataview';
 import {PaymentInformations} from "../../../api/PaymentInformations";
+import {CategoryService} from "../../../service/Category.service";
 
 
 @Component({
-    templateUrl: './galery.component.html',
-    providers: [MessageService,ArtClientService,PaintService]
+    templateUrl: './categories.component.html',
+    providers: [MessageService,ArtClientService,PaintService,CategoryService]
 })
-export class galeryComponent implements OnInit {
+export class categoriesComponent implements OnInit {
 
     paymentInformation: PaymentInformations={};
     sortOptions: any[] = [];
@@ -29,16 +30,20 @@ export class galeryComponent implements OnInit {
 
 
     paymentDialog:boolean=false;
-
+    categories:any=[];
+    category:any;
 
 
     constructor(private router: Router,private clientService: ArtClientService,
-      private messageService: MessageService,private paintService:PaintService) { }
+      private messageService: MessageService,private paintService:PaintService,
+                private  categoryService:CategoryService) { }
 
     ngOnInit() {
 
-        this.paintService.getPaints().subscribe({next: (data: Paint[])=>{this.paints=data;}});
-
+        this.paintService.getPaints().subscribe({next: (data: Paint[])=>{this.paints=data;
+        }});
+        this.categoryService.getCategories().subscribe({next: (data: Paint[])=>{this.categories=data;
+            }})
         this.sortOptions = [
             { label: 'Price High to Low', value: '!price' },
             { label: 'Price Low to High', value: 'price' }
@@ -66,6 +71,17 @@ export class galeryComponent implements OnInit {
     onPay(paintId:any) {
         this.paymentDialog=true;
         this.paintId=paintId;
+
+    }
+
+    onCategorySelect() {
+        this.paintService.getPaints().subscribe({next: (data: Paint[])=>{this.paints=data;
+                this.paints=this.paints.filter((data)=>{
+                    return data.category==this.category.name;
+                });
+            }});
+
+
 
     }
 }

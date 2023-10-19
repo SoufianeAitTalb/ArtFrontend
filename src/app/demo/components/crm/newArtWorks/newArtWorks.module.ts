@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { opportunityRoutingModule } from './opportunity-routing.module';
-import { opportunityComponent } from './opportunity.component';
+import { newArtWorksRoutingModule } from './newArtWorks-routing.module';
+import { newArtWorksComponent } from './newArtWorks.component';
 import { TableModule } from 'primeng/table';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ButtonModule } from 'primeng/button';
@@ -22,16 +22,17 @@ import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { ClientService } from 'src/app/demo/service/client.service';
 import { TabViewModule } from 'primeng/tabview';
 import { InputSwitchModule } from 'primeng/inputswitch';
-import { FieldsetModule } from 'primeng/fieldset';
-import { CalendarModule } from 'primeng/calendar';
-import { OpportunityService } from 'src/app/demo/service/opportunity.service';
-import { MisajourOpportunityService } from 'src/app/demo/service/MisajourOpportunity.service';
+import {DataViewModule} from "primeng/dataview";
+import {MultiSelectModule} from "primeng/multiselect";
+import {ImageModule} from "primeng/image";
+import {InputMaskModule} from "primeng/inputmask";
 
 
 @NgModule({
     imports: [
         CommonModule,
-        opportunityRoutingModule,
+        DataViewModule,
+        newArtWorksRoutingModule,
         TableModule,
         FileUploadModule,
         FormsModule,
@@ -51,10 +52,13 @@ import { MisajourOpportunityService } from 'src/app/demo/service/MisajourOpportu
         HttpClientModule,
         TabViewModule,
         InputSwitchModule,
-        FieldsetModule,
-        CalendarModule,
+        DropdownModule,
+        MultiSelectModule,
+        ImageModule,
+        FileUploadModule,
+        InputMaskModule
     ],
-    declarations: [opportunityComponent],
-    providers:[ClientService,OpportunityService,MisajourOpportunityService]
+    declarations: [newArtWorksComponent],
+    providers:[ClientService]
 })
-export class opportunityModule { }
+export class newArtWorksModule { }

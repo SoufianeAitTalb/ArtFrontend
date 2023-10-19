@@ -1,0 +1,93 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h5>Advanced</h5>
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="name"><span style="color:red" >* </span>Name</label>
+                    <input pInputText id="name" type="text" [(ngModel)]="paint.name" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !paint.name}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !paint.name">Name is required.</small>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="firstname2"><span style="color:red" >* </span>Materials</label>
+                <p-multiSelect  [options]="materialsPossibilities" [(ngModel)]="materials" required placeholder="Select materials"  class="multiselect-custom" display="chip" [ngClass]="{'ng-invalid ng-dirty' : submitted && !paint.materials}">
+                </p-multiSelect>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !paint.materials">Materials required.</small>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="xDimension"><span style="color:red" >* </span>xDimension</label>
+                    <p-inputNumber mode="decimal"  [(ngModel)]="paint.xDimension" [showButtons]="true" [min]="0" [max]="20000" [ngClass]="{'ng-invalid ng-dirty' : submitted && !paint.xDimension}">
+                    </p-inputNumber>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !paint.xDimension">Dimension x is required.</small>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="yDimension"><span style="color:red" >* </span>yDimension</label>
+                    <p-inputNumber inputId="stacked"  [(ngModel)]="paint.yDimension" [showButtons]="true" [min]="0" [max]="20000" [ngClass]="{'ng-invalid ng-dirty' : submitted && !paint.yDimension}">
+                    </p-inputNumber>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !paint.yDimension">Dimension y is required.</small>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="Paint Description">Paint Description</label>
+                    <textarea rows="4" cols="30"  pInputTextarea [(ngModel)]="paint.descPaint" ></textarea>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="Artist Description">Artist Description</label>
+                    <textarea rows="4" cols="30"  pInputTextarea [(ngModel)]="paint.descArtist" ></textarea>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="Price"><span style="color:red" >* </span>Price</label>
+                    <p-inputNumber  [showButtons]="true" [(ngModel)]="paint.price" inputId="stacked" mode="currency" currency="MAD" [ngClass]="{'ng-invalid ng-dirty' : submitted && !paint.price}"> </p-inputNumber>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !paint.price">Price is required.</small>
+
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="quantity"><span style="color:red" >* </span>Quantity</label>
+                    <p-inputNumber inputId="stacked"  [showButtons]="true" [(ngModel)]="paint.quantity" [min]="0" [max]="20000" [ngClass]="{'ng-invalid ng-dirty' : submitted && !paint.quantity}">
+                    </p-inputNumber>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !paint.quantity">Quantity is required.</small>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="inventoryStatus">Inventory status</label>
+
+                    <p-dropdown [options]="inventoryStatusPossibilities" [(ngModel)]="paint.inventoryStatus"  ></p-dropdown>
+
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="rating"><span style="color:red" >* </span>Rating</label>
+                    <p-rating [(ngModel)]="paint.rating" ></p-rating>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !paint.rating">Rating is required.</small>
+
+
+                </div>
+
+                <div class="field col-12 md:col-12">
+                    <label htmlFor="image">Upload image</label>
+
+<!--                    url="{{environment.backendHost}}/api/paints/files"-->
+                    <p-fileUpload
+                        #fileUpload
+                        name="file"
+                         url="{{environment.backendHost}}/api/paints/files"
+                        (onUpload)="onUpload($event)"
+                        [multiple]="true"
+                        [auto]="false"
+                        [showUploadButton]="false"
+                        >
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="uploadedFiles.length">
+                                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+
+                </div>
+                <div class="field col-12 md:col-12 p-d-flex p-jc-center p-ai-center">
+                    <p-button label="Submit" icon="pi pi-check" (onClick)="onAddPaint()" ></p-button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
