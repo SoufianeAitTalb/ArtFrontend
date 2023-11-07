@@ -26,6 +26,7 @@ import {DataViewModule} from "primeng/dataview";
 import {MultiSelectModule} from "primeng/multiselect";
 import {ImageModule} from "primeng/image";
 import {InputMaskModule} from "primeng/inputmask";
+import {TreeSelectModule} from "primeng/treeselect";
 
 
 @NgModule({

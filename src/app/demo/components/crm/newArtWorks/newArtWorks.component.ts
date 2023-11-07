@@ -9,6 +9,7 @@ import { DataView } from 'primeng/dataview';
 import { environment } from 'src/environments/environment';
 import {HttpClient} from "@angular/common/http";
 import { FileUpload } from 'primeng/fileupload';
+import {Category} from "../../../api/Category";
 
 
 @Component({
@@ -16,6 +17,7 @@ import { FileUpload } from 'primeng/fileupload';
     providers: [MessageService,ArtClientService,PaintService]
 })
 export class newArtWorksComponent implements OnInit {
+
 
 
     sortOptions: any[] = [];
@@ -30,6 +32,7 @@ export class newArtWorksComponent implements OnInit {
     paint:Paint={};
     paints:Paint[]=[];
 
+    categories:Category[]=[];
 
     materialsPossibilities:String[]=[
         "Watercolors",
@@ -64,22 +67,16 @@ export class newArtWorksComponent implements OnInit {
         "Stained glass materials"
     ];
 
-    selectedMulti: any[] = [];
+
     inventoryStatusPossibilities=["INSTOCK","OUTOFSTOCK","LOWSTOCK"];
 
     name:any;
     materials:any;
-    xDimension:any;
-    yDimension:any;
-    paintDescription:any;
-    artistDescrption:any;
+
     price:any;
-    quantity:any;
-    inventoryStatus:any;
     rating:any;
     image:any;
     submitted:boolean=false;
-
 
     @ViewChild('fileUpload')
     fileUpload!: FileUpload;
@@ -99,6 +96,8 @@ export class newArtWorksComponent implements OnInit {
             { label: 'Price High to Low', value: '!price' },
             { label: 'Price Low to High', value: 'price' }
         ];
+
+        this.paintService.getCategories().subscribe({next: (data: Category[])=>{this.categories=data;}})
 
     }
 
@@ -126,14 +125,17 @@ export class newArtWorksComponent implements OnInit {
         if(this.paint.name && this.materials && this.paint.xDimension && this.paint.yDimension && this.paint.price && this.paint.quantity && this.paint.rating) {
             this.paint.materials=this.materials.join(" - ");
             this.paint = {...this.paint}
-            console.log(this.paint);
 
             this.paintService.addPaint(this.paint);
             this.fileUpload.upload();
             this.paint={};
-            this.router.navigateByUrl('/crm/galery');
-            this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Paint added seccussfully' });
-
+            // this.router.navigateByUrl('/crm/gallery');
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Paint added seccussfully' });
+            this.submitted=false;
+            this.paint={};
+            this.uploadedFiles=[];
+            this.materials=undefined;
+            this.fileUpload.clear();
         }
 
 
@@ -145,12 +147,11 @@ export class newArtWorksComponent implements OnInit {
 
 
     onUpload(event: any) {
-        console.log("called");
+
         for (const file of event.files) {
             this.uploadedFiles.push(file);
         }
 
-        this.messageService.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded' });
     }
 
 

@@ -25,6 +25,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import {DataViewModule} from "primeng/dataview";
 import {ImageModule} from "primeng/image";
 import {CardModule} from "primeng/card";
+import {MessageModule} from "primeng/message";
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import {CardModule} from "primeng/card";
         InputSwitchModule,
         ImageModule,
         CardModule,
-        SelectButtonModule
+        SelectButtonModule,
+        MessageModule
     ],
     declarations: [categoriesComponent],
     providers:[ClientService]

@@ -68,6 +68,12 @@ export class galeryComponent implements OnInit {
         this.paintId=paintId;
 
     }
+
+    confirmPayment() {
+        this.paymentDialog=false;
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Congratulations! Your payment was successful.', life: 3000 });
+
+    }
 }
 
 

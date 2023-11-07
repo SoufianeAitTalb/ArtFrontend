@@ -1,6 +1,7 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
+import {AuthService} from "../demo/service/AuthService";
 
 @Component({
     selector: 'app-menu',
@@ -10,7 +11,7 @@ export class AppMenuComponent implements OnInit {
 
     model: any[] = [];
 
-    constructor(public layoutService: LayoutService) { }
+    constructor(public layoutService: LayoutService,public authService:AuthService) { }
 
     ngOnInit() {
         this.model = [
@@ -20,9 +21,9 @@ export class AppMenuComponent implements OnInit {
                 items: [
 
                     {
-                        label: 'Galery',
+                        label: 'Gallery',
                         icon: 'pi pi-fw pi-building',
-                        routerLink: ['/crm/galery']
+                        routerLink: ['/crm/gallery']
                     },
                     {
                         label: 'New ArtWorks',

@@ -24,6 +24,8 @@ import {MultiSelectModule} from "primeng/multiselect";
 import {RadioButtonModule} from "primeng/radiobutton";
 import {StaffService} from "./demo/service/staff.service";
 import {CountryService} from "./demo/service/country.service";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {AppHttpInterceptor} from "./demo/interceptors/app-http.interceptor";
 
 
 @NgModule({
@@ -56,7 +58,8 @@ import {CountryService} from "./demo/service/country.service";
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        StaffService,CountryService
+        StaffService,CountryService,
+        {provide : HTTP_INTERCEPTORS,useClass : AppHttpInterceptor , multi:true }
     ],
     bootstrap: [AppComponent]
 })

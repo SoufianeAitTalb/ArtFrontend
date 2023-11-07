@@ -3,6 +3,7 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import {MessageService} from "primeng/api";
 import {StaffService} from "../../../service/staff.service";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../service/AuthService";
 
 @Component({
     selector: 'app-login',
@@ -25,16 +26,17 @@ export class LoginComponent {
     password!: string;
     incorrect: boolean=false;
 
-    constructor(public layoutService: LayoutService,private staffService: StaffService,private router:Router,private messageService : MessageService) { }
+    constructor(public layoutService: LayoutService,private staffService: StaffService,private router:Router,private messageService : MessageService,
+                private authService: AuthService) { }
 
     onLogin() {
 
         if(this.email!=null && this.password!=null) {
             this.incorrect = false;
-            this.staffService.login(this.email, this.password).subscribe(
+            this.authService.login(this.email, this.password).subscribe(
                 (data: any) => {
-
-                    this.router.navigate(["/crm/client"]);
+                    this.authService.loadProfile(data);
+                    this.router.navigate(["/crm/gallery"]);
 
                 },
                 (error: any) => {

@@ -1,18 +1,25 @@
 <div class="grid">
+    <p-toast></p-toast>
     <div class="col-12">
         <div class="card">
             <h5>Advanced</h5>
             <div class="p-fluid p-formgrid grid">
                 <div class="field col-12 md:col-6">
                     <label htmlFor="name"><span style="color:red" >* </span>Name</label>
-                    <input pInputText id="name" type="text" [(ngModel)]="paint.name" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !paint.name}"/>
+                    <input pInputText id="name" type="text" [(ngModel)]="paint.name"  [ngClass]="{'ng-invalid ng-dirty' : submitted && !paint.name}"/>
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !paint.name">Name is required.</small>
                 </div>
                 <div class="field col-12 md:col-6">
                     <label htmlFor="firstname2"><span style="color:red" >* </span>Materials</label>
-                <p-multiSelect  [options]="materialsPossibilities" [(ngModel)]="materials" required placeholder="Select materials"  class="multiselect-custom" display="chip" [ngClass]="{'ng-invalid ng-dirty' : submitted && !paint.materials}">
+                <p-multiSelect  [options]="materialsPossibilities" [(ngModel)]="materials"  placeholder="Select materials"  class="multiselect-custom" display="chip" [ngClass]="{'ng-invalid ng-dirty' : submitted && !paint.materials}">
                 </p-multiSelect>
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !paint.materials">Materials required.</small>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="firstname2"><span style="color:red" >* </span>Category</label>
+                    <p-dropdown [options]="categories" [(ngModel)]="paint.category" optionLabel="name"  placeholder="Select a Category"></p-dropdown>
+
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !paint.materials">Category required.</small>
                 </div>
                 <div class="field col-12 md:col-6">
                     <label htmlFor="xDimension"><span style="color:red" >* </span>xDimension</label>
@@ -69,7 +76,7 @@
                         name="file"
                          url="{{environment.backendHost}}/api/paints/files"
                         (onUpload)="onUpload($event)"
-                        [multiple]="true"
+                        [multiple]="false"
                         [auto]="false"
                         [showUploadButton]="false"
                         >

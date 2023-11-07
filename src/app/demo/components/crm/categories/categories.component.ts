@@ -74,16 +74,27 @@ export class categoriesComponent implements OnInit {
 
     }
 
+    confirmPayment() {
+        this.paymentDialog=false;
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Congratulations! Your payment was successful.', life: 3000 });
+
+
+    }
+
     onCategorySelect() {
         this.paintService.getPaints().subscribe({next: (data: Paint[])=>{this.paints=data;
-                this.paints=this.paints.filter((data)=>{
-                    return data.category==this.category.name;
+                this.paints=this.paints.filter((data:any)=>{
+
+                    return data.category.categoryId==this.category.categoryId;
                 });
+
             }});
 
 
 
     }
+
+
 }
 
 

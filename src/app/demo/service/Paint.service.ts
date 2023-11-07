@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClientModule } from '@angular/common/http';
 import {Paint} from "../api/Paint";
+import {Category} from "../api/Category";
 
 @Injectable()
 export class PaintService {
@@ -40,5 +41,7 @@ export class PaintService {
     }
 
 
-
+    getCategories() {
+        return this.http.get<Paint[]>(environment.backendHost+"/api/categories/dto");
+    }
 }

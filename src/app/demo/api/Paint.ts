@@ -1,3 +1,5 @@
+import {Category} from "./Category";
+
 export interface Paint {
 
     paintId?: bigint;
@@ -15,7 +17,7 @@ export interface Paint {
     price?: number;
     quantity?: number;
     inventoryStatus?: InventoryStatus;
-    category?: string;
+    category?: Category;
     image?: string;
     rating?: number;
 }
